@@ -2,17 +2,17 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>历史照片AR展示</title>
-    <!-- 引入AR.js核心库 -->
-    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <!-- 引入AR.js核心库（用稳定CDN，解决加载失败） -->
+    <script src="https://cdn.jsdelivr.net/npm/aframe@1.4.2/dist/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ar.js@2.1.1/aframe/build/aframe-ar.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
             font-family: "Microsoft Yahei", sans-serif;
-            background: #1a1a1a;
-            color: #fff;
+            background: #000;
+            overflow: hidden;
         }
         .hint {
             position: absolute;
@@ -20,24 +20,43 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 999;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.8);
+            color: #fff;
             padding: 10px 20px;
             border-radius: 8px;
             font-size: 16px;
+            text-align: center;
+        }
+        a-scene {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
         }
     </style>
 </head>
 <body>
     <div class="hint">请扫描AR标记，查看历史照片</div>
 
-    <!-- AR场景容器 -->
+    <!-- 修复相机参数，手机自动调用 -->
     <a-scene 
-        arjs="sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3;"
+        arjs="
+            sourceType: webcam;
+            detectionMode: mono_and_matrix;
+            matrixCodeType: 3x3;
+            cameraParametersUrl: https://cdn.jsdelivr.net/npm/ar.js@2.1.1/data/camera_para.dat;
+            maxDetectionRate: 60;
+            canvasWidth: 1280;
+            canvasHeight: 720;
+        "
         vr-mode-ui="enabled: false"
         renderer="antialias: true; alpha: true"
+        embedded="true"
     >
         <a-assets>
-            <!-- 预加载你所有35张历史照片 -->
+            <!-- 预加载35张历史照片 -->
             <img id="img1" src="img1.jpg">
             <img id="img2" src="img2.jpg">
             <img id="img3" src="img3.jpg">
@@ -76,9 +95,9 @@
         </a-assets>
 
         <!-- 相机 -->
-        <a-camera position="0 0 0"></a-camera>
+        <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-        <!-- AR标记对应图片（1号标记对应img1，以此类推） -->
+        <!-- AR标记对应图片 -->
         <a-marker type="barcode" value="1">
             <a-image src="#img1" position="0 0 0" scale="2 1.5 1"></a-image>
         </a-marker>
