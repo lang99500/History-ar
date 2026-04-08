@@ -19,82 +19,129 @@
             border-radius: 8px;
             font-size: 16px;
         }
+        #ar-status {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+            background: rgba(0,0,0,0.8);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
     </style>
-    <!-- 引用本地vendor文件 -->
-    <script src="vendor/three.min.js"></script>
-    <script src="vendor/ar.js"></script>
-    <script src="vendor/ar-threex.js"></script>
+    <!-- 用国内CDN，确保AR库加载成功 -->
+    <script src="https://cdn.jsdelivr.net/npm/aframe@1.4.2/dist/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ar.js@2.2.2/aframe/build/aframe-ar.min.js"></script>
 </head>
 <body>
     <div class="tip">请扫描AR标记，查看历史照片</div>
+    <div id="ar-status">相机启动中...</div>
+
+    <a-scene
+        arjs="
+            sourceType: webcam;
+            detectionMode: mono;
+            matrixCodeType: 3x3;
+            cameraParametersUrl: https://cdn.jsdelivr.net/npm/ar.js@2.2.2/data/camera_para.dat;
+            maxDetectionRate: 30;
+        "
+        vr-mode-ui="enabled: false"
+        embedded="true"
+        arjs-video-autoplay="true"
+        arjs-video-muted="true"
+    >
+        <a-assets>
+            <!-- 完全匹配你的35张图片 -->
+            <img id="img1" src="img1.jpg">
+            <img id="img2" src="img2.jpg">
+            <img id="img3" src="img3.jpg">
+            <img id="img4" src="img4.jpg">
+            <img id="img5" src="img5.jpg">
+            <img id="img6" src="img6.jpg">
+            <img id="img7" src="img7.jpg">
+            <img id="img8" src="img8.jpg">
+            <img id="img9" src="img9.jpg">
+            <img id="img10" src="img10.jpg">
+            <img id="img11" src="img11.jpg">
+            <img id="img12" src="img12.jpg">
+            <img id="img13" src="img13.jpg">
+            <img id="img14" src="img14.jpg">
+            <img id="img15" src="img15.jpg">
+            <img id="img16" src="img16.jpg">
+            <img id="img17" src="img17.jpg">
+            <img id="img18" src="img18.jpg">
+            <img id="img19" src="img19.jpg">
+            <img id="img20" src="img20.jpg">
+            <img id="img21" src="img21.jpg">
+            <img id="img22" src="img22.jpg">
+            <img id="img23" src="img23.jpg">
+            <img id="img24" src="img24.jpg">
+            <img id="img25" src="img25.jpg">
+            <img id="img26" src="img26.jpg">
+            <img id="img27" src="img27.jpg">
+            <img id="img28" src="img28.jpg">
+            <img id="img29" src="img29.jpg">
+            <img id="img30" src="img30.jpg">
+            <img id="img31" src="img31.jpg">
+            <img id="img32" src="img32.jpg">
+            <img id="img33" src="img33.jpg">
+            <img id="img34" src="img34.jpg">
+            <img id="img35" src="img35.jpg">
+        </a-assets>
+
+        <!-- AR标记与图片绑定 -->
+        <a-marker type="barcode" value="1"><a-image src="#img1" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="2"><a-image src="#img2" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="3"><a-image src="#img3" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="4"><a-image src="#img4" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="5"><a-image src="#img5" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="6"><a-image src="#img6" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="7"><a-image src="#img7" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="8"><a-image src="#img8" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="9"><a-image src="#img9" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="10"><a-image src="#img10" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="11"><a-image src="#img11" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="12"><a-image src="#img12" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="13"><a-image src="#img13" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="14"><a-image src="#img14" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="15"><a-image src="#img15" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="16"><a-image src="#img16" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="17"><a-image src="#img17" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="18"><a-image src="#img18" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="19"><a-image src="#img19" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="20"><a-image src="#img20" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="21"><a-image src="#img21" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="22"><a-image src="#img22" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="23"><a-image src="#img23" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="24"><a-image src="#img24" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="25"><a-image src="#img25" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="26"><a-image src="#img26" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="27"><a-image src="#img27" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="28"><a-image src="#img28" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="29"><a-image src="#img29" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="30"><a-image src="#img30" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="31"><a-image src="#img31" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="32"><a-image src="#img32" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="33"><a-image src="#img33" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="34"><a-image src="#img34" scale="3 2 1"></a-image></a-marker>
+        <a-marker type="barcode" value="35"><a-image src="#img35" scale="3 2 1"></a-image></a-marker>
+
+        <a-camera position="0 0 0"></a-camera>
+    </a-scene>
 
     <script>
-        // 初始化AR场景
-        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
-
-        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const scene = new THREE.Scene();
-
-        // 初始化AR摄像头源
-        const arToolkitSource = new THREEx.ArToolkitSource({ sourceType: 'webcam' });
-        arToolkitSource.init(() => setTimeout(() => onResize(), 200));
-
-        // 窗口大小适配
-        function onResize() {
-            arToolkitSource.onResizeElement();
-            arToolkitSource.copyElementSizeTo(renderer.domElement);
-            if (arToolkitContext.arController) {
-                arToolkitSource.copyElementSizeTo(arToolkitContext.arController.canvas);
-            }
-        }
-        window.addEventListener('resize', onResize);
-
-        // 初始化AR上下文（加载本地相机标定文件）
-        const arToolkitContext = new THREEx.ArToolkitContext({
-            cameraParametersUrl: 'vendor/camera_para.dat',
-            detectionMode: 'mono',
-            maxDetectionRate: 60,
-            canvasWidth: 1280,
-            canvasHeight: 720
+        // 监听AR相机状态，更新提示
+        const sceneEl = document.querySelector('a-scene');
+        const statusEl = document.getElementById('ar-status');
+        sceneEl.addEventListener('arjs-video-loaded', () => {
+            statusEl.textContent = '相机已启动，对准AR标记即可';
         });
-        arToolkitContext.init(() => camera.projectionMatrix.copy(arToolkitContext.getProjectionMatrix()));
-
-        // 加载35张历史照片，绑定对应AR标记
-        const markerRoots = [];
-        for (let i = 1; i <= 35; i++) {
-            // 创建标记根节点
-            const markerRoot = new THREE.Group();
-            scene.add(markerRoot);
-            // 绑定AR标记（编号1-35对应img1-img35）
-            new THREEx.ArMarkerControls(arToolkitContext, markerRoot, {
-                type: 'barcode',
-                barcodeValue: i
-            });
-
-            // 创建图片平面
-            const geometry = new THREE.PlaneGeometry(2, 1.5);
-            // 加载对应图片
-            const texture = new THREE.TextureLoader().load(`img${i}.jpg`);
-            const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
-            const mesh = new THREE.Mesh(geometry, material);
-            // 调整图片角度，适配AR视角
-            mesh.rotation.x = -Math.PI / 2;
-            markerRoot.add(mesh);
-
-            markerRoots.push(markerRoot);
-        }
-
-        // 动画循环，更新AR识别
-        function animate() {
-            requestAnimationFrame(animate);
-            if (arToolkitSource.ready) {
-                arToolkitContext.update(arToolkitSource.domElement);
-            }
-            renderer.render(scene, camera);
-        }
-        animate();
+        sceneEl.addEventListener('arjs-error', (e) => {
+            statusEl.textContent = '相机启动失败：' + e.detail.message;
+        });
     </script>
 </body>
 </html>
